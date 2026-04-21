@@ -1,0 +1,13 @@
+{
+  "name": "phase-3-advanced-automation-ci-cd",
+  "version": "1.0.0",
+  "description": "Laboratorio de CI/CD avanzado con GitHub Actions",
+  "private": true,
+  "scripts": {
+    "test": "jest",
+    "test:ci": "jest --ci --coverage"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
