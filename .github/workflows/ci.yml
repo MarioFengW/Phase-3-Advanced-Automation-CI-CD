@@ -1,5 +1,9 @@
 name: CI - Correr Tests
 
+permissions:
+  contents: read
+  packages: write
+
 on:
   push:
     branches: [main]
@@ -98,9 +102,12 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Construir tag en minusculas
+        run: echo "IMAGE_TAG=ghcr.io/${GITHUB_REPOSITORY,,}:latest" >> "$GITHUB_ENV"
+
       - name: Build y push de imagen Docker
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository }}:latest
+          tags: ${{ env.IMAGE_TAG }}
